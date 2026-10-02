@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node app.js",
 		"dev": "node --env-file=.env --watch app.js",
-		"populate": "node --env-file=.env models/populatedb.js"
+		"populate": "node models/populatedb.js"
 	},
 	"repository": {
 		"type": "git",
@@ -22,5 +22,8 @@
 	"homepage": "https://github.com/jose-g315/oak-weight-inventory#readme",
 	"devDependencies": {
 		"@biomejs/biome": "2.5.14"
+	},
+	"dependencies": {
+		"pg": "^8.23.0"
 	}
 }
