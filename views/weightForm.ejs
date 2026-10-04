@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Weight Form</title>
+</head>
+<body>
+    <% const values = locals.values || {}; %>
+    <div class="app">
+        <div class="header">
+            <h1>Weight Form</h1>
+            <a href="/">Go Back</a>
+        </div>
+        <%- include("errorPartial") %>
+        <form method="POST" action="/new">
+            <div>
+                <label for="weight">Weight:</label>
+                <select id="weight" name="weight" required>
+                    <optgroup label="Pounds">
+                    <% [5, 10, 25, 35, 45, 100].forEach(w => { %>
+                        <option value="<%= w %>" <%= String(w) === values.weight ? 'selected' : '' %>>
+                            <%= w %>
+                        </option>
+                    <% }) %>
+                    </optgroup>
+                </select>
+            </div>
+            <div>
+                <label for="price">Price ($):</label>
+                <input type="number" id="price" name="price" step="0.01" min="0" required value="<%= values.price ?? '' %>">
+            </div>
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="0" value="<%= values.quantity ?? '' %>">
+            </div>
+            <div>
+                <label for="manufacturer_id">Manufacturer:</label>
+                <select id="manufacturer_id" name="manufacturer_id">
+                    <% manufacturers.forEach(manufacturer => { %>
+                    <option value="<%= manufacturer.manufacturer_id %>"
+                        <%= String(manufacturer.manufacturer_id) === values.manufacturer_id ? 'selected' : '' %>>
+                        <%= manufacturer.name %>
+                    </option>
+                    <% }) %>
+                </select>
+            </div>
+            <div>
+                <label for="material_id">Material:</label>
+                <select id="material_id" name="material_id">
+                    <% materials.forEach(material => { %>
+                    <option value="<%= material.material_id %>"
+                        <%= String(material.material_id) === values.material_id ? 'selected' : '' %>>
+                        <%= material.name %>
+                    </option>
+                    <% }) %>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
