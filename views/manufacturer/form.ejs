@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer</title>
+</head>
+<body>
+    <div class="app">
+        <% const m = locals.manufacturer || {}; const isEdit = Boolean(m.manufacturer_id); %>
+        <div class="header">
+            <h1><%= isEdit ? 'Update' : 'Add New' %> Manufacturer</h1>
+            <a href="/manufacturers">Go Back</a>
+        </div>
+          <h2><%= isEdit ?  m.name: '' %></h2>
+            <%- include("../partials/errorPartial") %>
+            <form method="POST" action="<%= isEdit ? `/manufacturers/${m.manufacturer_id}/update` : '/manufacturers/new' %>">
+                <label for="name">Manufacturer Name:</label>
+                <input type="text" id="name" name="name" value="<%= input?.name || '' %>" required>
+                <button type="submit"><%= isEdit ? 'Update' : 'Create' %></button>
+            </form>
+
+            <% if (isEdit) { %>
+                <form method="POST" action="/manufacturers/<%= m.manufacturer_id %>/delete"> 
+                    <button type="submit">Delete Manufacturer</button> 
+                </form>
+            <% } %>
+    </div>
+</body>
+</html>
