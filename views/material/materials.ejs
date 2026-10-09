@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAK Weight Inventory</title>
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <h1>Current Materials</h1>
+            <a href="/">Go Back</a>
+            <a href="/materials/new">Add Material</a>
+
+        </div>
+        <div class="inventory-container">
+            <% materials.forEach(material => { %>
+            <div class="material-card">
+                <p><%= material.material_id %></p>
+                <p><%= material.name%></p>
+                <a class="card-link" href="/materials/<%= material.material_id %>/update">Edit material</a>
+                <hr>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>
