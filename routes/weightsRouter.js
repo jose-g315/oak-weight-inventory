@@ -1,20 +1,45 @@
 import { Router } from 'express';
 import {
-	addWeightGet,
-	addWeightPost,
-	singleWeightGet,
+	weightCreateGet,
+	weightCreatePost,
+	weightUpdateGet,
+	weightUpdatePost,
+	weightDeletePost,
 	weightsListGet,
 } from '../controllers/weightsController.js';
 import {
+	editWeightValidationRules,
 	weightValidationRules,
-	validateWeightId,
-} from '../middleware/weightValidationRule.js';
+	validateId,
+} from '../middleware/validationRules.js';
 import { handleParamErrors } from '../middleware/validation.js';
-const weightsRouter = Router();
+const weightsRouter = new Router();
 
-weightsRouter.post('/new', weightValidationRules, addWeightPost);
-weightsRouter.get('/new', addWeightGet);
-weightsRouter.get('/:id', validateWeightId, handleParamErrors, singleWeightGet);
+// create
+weightsRouter.get('/new', weightCreateGet);
+weightsRouter.post('/new', weightValidationRules, weightCreatePost);
+// update
+weightsRouter.get(
+	'/:id/update',
+	validateId,
+	handleParamErrors,
+	weightUpdateGet
+);
+weightsRouter.post(
+	'/:id/update',
+	validateId,
+	handleParamErrors,
+	editWeightValidationRules,
+	weightUpdatePost
+);
+// delete
+weightsRouter.post(
+	'/:id/delete',
+	validateId,
+	handleParamErrors,
+	weightDeletePost
+);
+// list
 weightsRouter.get('/', weightsListGet);
 
 export { weightsRouter };
