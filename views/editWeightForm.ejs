@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Weight Form</title>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+<body>
+    <div class="app">
+    <% const values = locals.values || {}; %>
+        <div class="header">
+            <h1>Update Weight</h1>
+            <a href="/" class="header-link">Go Back</a>
+        </div>
+        <h2 class="current-selected"><span><%= values.weight %></span>lb <br> Made by <span><%= values.manufacturer_name %></span> <br> Using <span><%= values.material_name %></span></h2>
+        <%- include("./partials/errorPartial") %>
+        <form method="POST" action="<%=`/${values.weight_id}/update`%>" >
+            <h2>Edit Weight Form</h2>
+            <div>
+                <label for="price">Price ($):</label>
+                <input type="number" id="price" name="price" step="0.01" min="0" required value="<%= values.price ?? '' %>">
+            </div>
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="0" required value="<%= values.quantity ?? '' %>">
+            </div>
+            <button type="submit">Update</button>
+        </form>
+        <form class="delete-form" method="POST" action="<%=`/${values.weight_id}/delete`%>" onsubmit="return confirm('Delete this weight?')"> 
+            <button type="submit">Delete Weight</button> 
+        </form>
+        <%- include ('partials/footer') %>
+    </div>
+</body>
+</html>

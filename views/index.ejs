@@ -4,28 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OAK Weight Inventory</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <div class="app">
         <div class="header">
-            <h1>Current Inventory</h1>
-            <a href="/new">Add New Weight</a>
-        </div>
-        <div class="inventory-container">
+                <h1>Current Inventory</h1>
+                <div>
+                    <a class="header-link" href="materials">View Materials</a>
+                    <a class="header-link" href="manufacturers">View Manufacturers</a>
+                </div>
+        </div> 
+        <a class="header-link add-link" href="/new">Add New Weight</a>
+        <div class="card-container">
             <% weights.forEach(weight => { %>
-            <div class="weight-card">
-                <p><%= weight.weight_id %></p>
-                <p><%= weight.weight %></p>
-                <p><%= weight.price %></p>
-                <p><%= weight.quantity %></p>
+            <div class="card">
+                <p>Weight: <span><%= weight.weight %></span></p>
+                <p>Price: $<span><%= weight.price %></span></p>
+                <p>Quantity: <span><%= weight.quantity %></span></p>
                 <img src="/images/<%= weight.weight %>.jpg" alt="<%= weight.weight %> lb plate"
-                    onerror="this.onerror=null; this.src='/default.jpg'">
-                <small>Made by <%= weight.manufacturer_name %> Using <%= weight.material_name %></small>
-                <a class="card-link" href="/<%= weight.weight_id %>">EDIT</a>
-                <hr>
+                        onerror="this.onerror=null; this.src='/images/default.jpg'">
+                <p>Made by <span><%= weight.manufacturer_name %></span> Using <span><%= weight.material_name %></span></p>
+                <a class="card-link" href="/<%= weight.weight_id %>/update">Edit</a>
             </div>
             <% }) %>
         </div>
+        <%- include ('partials/footer') %>
     </div>
 </body>
 </html>

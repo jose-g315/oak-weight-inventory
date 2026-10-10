@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OAK Weight Inventory</title>
+    <title>Manufacturers</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
     <div class="app">
         <div class="header">
             <h1>Current Manufacturers</h1>
-            <a href="/">Go Back</a>
-            <a href="/manufacturers/new">Add Manufacturer</a>
-
+            <div><a href="/" class="header-link">Go Back</a></div>
         </div>
-        <div class="inventory-container">
+        <a href="/manufacturers/new" class="header-link add-link">Add Manufacturer</a>
+        <div class="card-container">
             <% manufacturers.forEach(manufacturer => { %>
-            <div class="manufacturer-card">
-                <p><%= manufacturer.manufacturer_id %></p>
-                <p><%= manufacturer.name%></p>
-                <a class="card-link" href="/manufacturers/<%= manufacturer.manufacturer_id %>/update">Edit Manufacturer</a>
-                <hr>
+            <div class="card">
+                <p>Manufacturer Name: <span><%= manufacturer.name%></span></p>
+                <a class="card-link" href="/manufacturers/<%= manufacturer.manufacturer_id %>/update">Edit</a>
             </div>
             <% }) %>
         </div>
+        <%- include ('../partials/footer') %>
     </div>
 </body>
 </html>

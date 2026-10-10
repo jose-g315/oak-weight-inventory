@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manufacturer</title>
+    <title>Manufacturer Form</title>
+    <link rel="stylesheet" href="/styles/styles.css">
 </head>
 <body>
     <div class="app">
         <% const m = locals.manufacturer || {}; const isEdit = Boolean(m.manufacturer_id); %>
         <div class="header">
             <h1><%= isEdit ? 'Update' : 'Add New' %> Manufacturer</h1>
-            <a href="/manufacturers">Go Back</a>
+            <div>
+                <a href="/manufacturers" class="header-link">Go Back</a>
+                <a href="/" class="header-link">Home</a>
+            </div>     
         </div>
-          <h2><%= isEdit ?  m.name: '' %></h2>
+          <h2 class="current-selected">Current Name: <span><%= isEdit ?  m.name: '' %></span></h2>
             <%- include("../partials/errorPartial") %>
             <form method="POST" action="<%= isEdit ? `/manufacturers/${m.manufacturer_id}/update` : '/manufacturers/new' %>">
                 <label for="name">Manufacturer Name:</label>
@@ -21,10 +25,11 @@
             </form>
 
             <% if (isEdit) { %>
-                <form method="POST" action="/manufacturers/<%= m.manufacturer_id %>/delete"> 
+                <form class="delete-form" method="POST" action="/manufacturers/<%= m.manufacturer_id %>/delete" onsubmit="return confirm('Delete this manufacturer?')"> 
                     <button type="submit">Delete Manufacturer</button> 
                 </form>
             <% } %>
+            <%- include ('../partials/footer') %>
     </div>
 </body>
 </html>
