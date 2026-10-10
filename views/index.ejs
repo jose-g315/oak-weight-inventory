@@ -19,11 +19,11 @@
         <div class="card-container">
             <% weights.forEach(weight => { %>
             <div class="card">
+                <img src="/images/<%= weight.weight %>.jpg" alt="<%= weight.weight %> lb plate"
+                onerror="this.onerror=null; this.src='/images/default.jpg'">
                 <p>Weight: <span><%= weight.weight %></span></p>
                 <p>Price: $<span><%= weight.price %></span></p>
                 <p>Quantity: <span><%= weight.quantity %></span></p>
-                <img src="/images/<%= weight.weight %>.jpg" alt="<%= weight.weight %> lb plate"
-                        onerror="this.onerror=null; this.src='/images/default.jpg'">
                 <p>Made by <span><%= weight.manufacturer_name %></span> Using <span><%= weight.material_name %></span></p>
                 <a class="card-link" href="/<%= weight.weight_id %>/update">Edit</a>
             </div>

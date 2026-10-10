@@ -58,7 +58,9 @@ body {
 	width: 150px;
 	background-color: var(--secondary-color);
 	color: var(--primary-color);
-	margin: 50px;
+	margin: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .add-link:hover {
 	background-color: var(--secondary-accent-color);
@@ -66,18 +68,20 @@ body {
 }
 .card-container {
 	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
+	flex-direction: column;
 	overflow-y: auto;
 	scrollbar-color: var(--primary-color) var(--secondary-color);
 	scrollbar-width: auto;
+	align-self: center;
+	width: 100%;
+	max-width: 1000px;
+	padding: 0 10px;
 }
 .card {
 	border-radius: 1%;
-	width: 300px;
-	min-height: 250px;
-	padding: 25px;
-	margin: 20px;
+	max-height: 120px;
+	padding: 18px;
+	margin: 10px;
 	background: var(--secondary-color);
 	color: var(--primary-color);
 	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.15);
@@ -85,38 +89,33 @@ body {
 		transform 0.15s linear,
 		box-shadow 0.15s linear;
 	display: flex;
-	flex-direction: column;
+	gap: 10px;
 }
 .card:hover {
 	box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
-	transform: scale(1.04);
+	transform: scale(0.98);
 	position: relative;
 	z-index: 10;
 }
 .card p {
 	width: 100%;
 	overflow-wrap: break-word;
-	font-size: 20px;
-	margin-top: 0;
-	margin-bottom: 10px;
-	border-bottom: 1px dashed rgba(0, 0, 0, 0.15);
-	padding-bottom: 5px;
-	flex-grow: 1;
+	font-size: 16px;
 }
 .card span {
 	color: var(--accent-color);
-	font-size: 23px;
+	font-size: 19px;
 }
 .card-link {
 	text-decoration: none;
 	background-color: var(--primary-color);
 	color: var(--secondary-color);
-	padding: 12px;
-	margin-top: 10px;
+	padding: 10px;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
 	text-align: center;
+	height: 40px;
 	width: 100px;
 }
 .card-link:hover {
@@ -125,6 +124,7 @@ body {
 }
 .card img {
 	max-width: 100%;
+	width: 80px;
 	height: auto;
 }
 form {
@@ -196,4 +196,36 @@ button:hover {
 	padding: 20px 40px;
 	background: var(--primary-color);
 	color: var(--secondary-color);
+}
+
+@media (max-width: 725px) {
+	.card p {
+		width: 100%;
+		overflow-wrap: break-word;
+		font-size: 11px;
+	}
+	.card span {
+		font-size: 14px;
+	}
+}
+@media (max-width: 525px) {
+	.card-container {
+		padding: 0px;
+	}
+	.card img {
+		max-width: 100%;
+		width: 45px;
+		height: auto;
+	}
+	.card-link {
+		padding: 7px;
+		height: 30px;
+		width: 70px;
+	}
+}
+@media (max-width: 375px) {
+	.card img {
+		width: 0px;
+		height: auto;
+	}
 }

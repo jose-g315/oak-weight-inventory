@@ -16,7 +16,9 @@
                 <a href="/" class="header-link">Home</a>
             </div>     
         </div>
+          <% if (isEdit) { %>
           <h2 class="current-selected">Current Name: <span><%= isEdit ?  m.name: '' %></span></h2>
+          <% } %>
             <%- include("../partials/errorPartial") %>
             <form method="POST" action="<%= isEdit ? `/manufacturers/${m.manufacturer_id}/update` : '/manufacturers/new' %>">
                 <label for="name">Manufacturer Name:</label>
